@@ -18,6 +18,7 @@ const searchRouter = require('./routes/search');
 //sprint
 const sprintUserRouter = require('./routes/sprint_user');
 const sprintBuddyRouter = require("./routes/buddy");
+const sprintPartyRouter = require("./routes/party");
 
 var app = express();
 const corsOptions = {
@@ -62,6 +63,7 @@ app.use('/share', shareRouter);
 app.use('/search', searchRouter);
 app.use('/sprint/user', sprintUserRouter);
 app.use('/sprint/buddy', sprintBuddyRouter);
+app.use('/sprint/party', sprintPartyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
