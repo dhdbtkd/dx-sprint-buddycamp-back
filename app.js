@@ -22,7 +22,7 @@ const sprintBuddyRouter = require("./routes/buddy");
 var app = express();
 const corsOptions = {
   credentials : true,
-  origin : ["http://localhost:5174", "http://localhost:5173"]
+  origin : ["http://localhost:5174", "http://localhost:5173", "https://dx-sprint-buddycamp.vercel.app"]
 }
 app.use(cors(corsOptions));
 // view engine setup
