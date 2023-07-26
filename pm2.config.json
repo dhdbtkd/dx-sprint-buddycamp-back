@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "express",
+            "script": "npm",
+            "args": "start"
+        }
+    ]
+}
