@@ -4,7 +4,6 @@ const dbClient = require('../controller/db');
 
 router.get('/', async (req,res)=>{
     const body = req.query;
-    console.log("🚀 ~ file: comment.js:7 ~ router.get ~ body:", body)
     try {
         result = await dbClient.query(`SELECT * FROM public."comment" WHERE "parent_id" = ${body.parent_id} AND "category" = '${body.category}' LIMIT 20 OFFSET 0 `);
         if(result.rowCount > 0){
