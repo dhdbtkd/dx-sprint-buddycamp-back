@@ -3,8 +3,10 @@ const router = express.Router();
 const dbClient = require('../controller/db');
 
 router.get('/', async (req,res)=>{
+    const body = req.query;
+    console.log("🚀 ~ file: comment.js:7 ~ router.get ~ body:", body)
     try {
-        result = await dbClient.query(`SELECT * FROM public."party" ORDER BY "id" DESC LIMIT 20 OFFSET 0 `);
+        result = await dbClient.query(`SELECT * FROM public."comment" WHERE "parent_id" = ${body.parent_id} AND "category" = '${body.category}' LIMIT 20 OFFSET 0 `);
         if(result.rowCount > 0){
             res.status(200).json({
                 code: 200,
@@ -24,18 +26,28 @@ router.get('/', async (req,res)=>{
     }
     
 })
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
     const body = req.body;
-    const { title, introduce, sido, number, positions } = body;
+    const { id, comment, writer, category } = body;
     try {
-        result = await dbClient.query(`INSERT INTO public."party"
-        (title, introduce, sido, number, positions)
-        VALUES ('${title}', '${introduce}', '${sido}', '${number}', '${positions}');`);
+        const result = await dbClient.query(`INSERT INTO public."comment"
+        (parent_id, comment, writer, category)
+        VALUES ('${id}', '${comment}', '${writer}', '${category}');`);
         if(result.rowCount > 0){
-            res.status(200).send({
-                result: true,
-                msg: ""
-            })
+            const result = await dbClient.query(`UPDATE public."${category}"
+            SET "comment_num" = "comment_num" + 1
+            WHERE "id" = ${id}`)
+            if(result.rowCount > 0){
+                res.status(200).send({
+                    result: true,
+                    msg: ""
+                })
+            } else {
+                res.status(200).send({
+                    result: false,
+                    msg: "db error"
+                })
+            }
         } else {
             res.status(200).send({
                 result: false,

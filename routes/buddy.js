@@ -4,7 +4,7 @@ const dbClient = require('../controller/db');
 
 router.get('/', async (req,res)=>{
     try {
-        result = await dbClient.query(`SELECT * FROM public."buddy" LIMIT 20 OFFSET 0`);
+        result = await dbClient.query(`SELECT * FROM public."buddy" ORDER BY "id" DESC LIMIT 20 OFFSET 0`);
         if(result.rowCount > 0){
             res.status(200).json({
                 code: 200,
