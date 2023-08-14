@@ -5,7 +5,9 @@ const SECRET_KEY = process.env.JWT_SECRET_KEY;
 exports.auth = (req, res, next) => {
     // 인증 완료
     try {
-        const token = req.cookies.jwtToken
+        console.log(req.body);
+        console.log("🚀 ~ file: auth.js:9 ~ req:", req)
+        let token = req.cookies.jwtToken?req.cookies.jwtToken:req.body.jwtToken;
         console.log("🚀 ~ file: auth.js:9 ~ token:", token)
         // 요청 헤더에 저장된 토큰(req.headers.authorization)과 비밀키를 사용하여 토큰을 req.decoded에 반환
         req.decoded = jwt.verify(token, SECRET_KEY);

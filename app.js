@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 
 dotenv.config()
 
@@ -40,7 +41,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'ouou',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    sameSite: false,
+    httpOnly: true,
+  },
+  // store: new MemoryStore({
+  //   checkPeriod: 86400000
+  // })
 }));
 app.use(async (req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
