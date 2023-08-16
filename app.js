@@ -43,8 +43,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    sameSite: false,
+    secure: true,
     httpOnly: true,
+    sameSite: 'none',
+    maxAge: 60 * 60 * 24 * 1000
   },
   // store: new MemoryStore({
   //   checkPeriod: 86400000
