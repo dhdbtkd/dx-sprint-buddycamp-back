@@ -47,7 +47,10 @@ router.post('/login', async (req, res) => {
                     issuer: '토큰발급자',
                 });
                 res.cookie('jwtToken', token, {
-                    httpOnly: true,
+                    secure : true,
+                    sameSite : 'none',
+                    httpOnly : true,
+                    maxAge: 60 * 60
                 });
                 //response
                 return res.status(200).json({
