@@ -88,7 +88,6 @@ router.post('/login', async function (req, res, next) {
   });
   res.cookie('jwtToken', token, {
     secure : true,
-    httpOnly: true,
     sameSite : 'none',
     maxAge: 60 * 60
   });
