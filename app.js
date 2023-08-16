@@ -45,7 +45,7 @@ app.use(session({
   cookie: {
     secure : true,
     httpOnly: true,
-    sameSite: false,
+    sameSite : 'none',
     maxAge: 60 * 60 * 24 * 1000
   },
   // store: new MemoryStore({
