@@ -6,8 +6,8 @@ var logger = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
-const session = require('express-session');
-const MemoryStore = require('memorystore')(session);
+// const session = require('express-session');
+// const MemoryStore = require('memorystore')(session);
 
 dotenv.config()
 
@@ -38,19 +38,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'ouou',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure : true,
-    sameSite : 'none',
-    maxAge: 60 * 60 * 24 * 1000
-  },
-  // store: new MemoryStore({
-  //   checkPeriod: 86400000
-  // })
-}));
+// app.use(session({
+//   secret: 'ouou',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     secure : true,
+//     sameSite : 'none',
+//     maxAge: 60 * 60 * 24 * 1000
+//   }
+// }));
 app.use(async (req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   res.header(
