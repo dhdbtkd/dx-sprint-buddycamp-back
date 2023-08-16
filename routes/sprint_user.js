@@ -110,7 +110,7 @@ router.post('/signup', async (req, res) => {
     }
 })
 //JWT 토큰 확인
-router.post('/payload', auth, (req, res) => {
+router.get('/payload', auth, (req, res) => {
     const name = req.decoded.name;
     console.log("🚀 ~ file: sprint_user.js:112 ~ router.post ~ name:", name)
     return res.status(200).json({
