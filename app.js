@@ -23,6 +23,7 @@ const sprintPartyRouter = require("./routes/party");
 const sprintCommentRouter = require("./routes/comment");
 
 var app = express();
+app.use(cookieParser());
 const corsOptions = {
   credentials : true,
   origin : ["http://localhost:5174", "http://localhost:5173", "https://dx-sprint-buddycamp.vercel.app"]
@@ -36,7 +37,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(session({
 //   secret: 'ouou',
