@@ -43,9 +43,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: true,
+    secure : true,
     httpOnly: true,
-    sameSite: 'none',
+    sameSite: false,
     maxAge: 60 * 60 * 24 * 1000
   },
   // store: new MemoryStore({
